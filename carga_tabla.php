@@ -8,6 +8,7 @@ class Tabla {
   private $mat=array();
   private $cantFilas;
   private $cantColumnas;
+  private $tableColor;
 
   public function getCantFilas() {
     return $this->cantFilas;   
@@ -17,10 +18,11 @@ class Tabla {
     return $this->cantColumnas;   
   }
 
-  public function __construct($fi,$co)
+  public function __construct($fi,$co,$tcol)
   {
     $this->cantFilas=$fi;
     $this->cantColumnas=$co;
+    $this->tableColor=$tcol;
   }
 
   public function cargar($fila,$columna,$valor)
@@ -30,7 +32,7 @@ class Tabla {
 
   private function inicioTabla()
   {
-    echo '<table border="1">';
+    echo '<table border="1" style="color:'.$this->tableColor.'">';
   }
     
   private function inicioFila()
@@ -69,7 +71,7 @@ class Tabla {
   }
 }
 
-$tabla1=new Tabla(22,33);
+$tabla1=new Tabla(22,33,'blue');
 $valor_celda=0;
 for($f=1;$f<=$tabla1->getCantFilas();$f++) {
     for($c=1;$c<=$tabla1->getCantColumnas();$c++) {

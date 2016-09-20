@@ -47,7 +47,7 @@ class Menu {
       echo '<li><a href="'.$this->enlaces[$f].'" title="'.$this->titulos[$f].'">'.$this->titulos[$f].'</a></li>';
     echo "</ul>";
   }
-
+  
 }
 
 $menu1=new Menu();

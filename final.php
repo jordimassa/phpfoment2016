@@ -1,0 +1,54 @@
+</head>
+<body>
+<?php
+class Operacion {
+  protected $valor1;
+  protected $valor2;
+  protected $resultado;
+  public function __construct($v1,$v2)
+  {
+    $this->valor1=$v1;
+    $this->valor2=$v2;
+  }
+  public function imprimirResultado()
+  {
+    echo $this->resultado.'<br>';
+  }
+}
+
+final class Suma extends Operacion{
+  private $titulo;
+  public function __construct($v1,$v2,$tit)
+  {
+    Operacion::__construct($v1,$v2);
+    $this->titulo=$tit;
+  }
+  public function operar()
+  {
+    echo $this->titulo;
+    echo $this->valor1.'+'.$this->valor2.' es ';
+    $this->resultado=$this->valor1+$this->valor2;
+  }
+
+  public final function imprimirResultado()
+  {
+    echo "A".$this->resultado.'<br>';
+  }
+
+}
+
+class Resta extends suma{
+}
+
+
+$suma=new Suma(10,10,'Suma de valores:');
+$suma->operar();
+$suma->imprimirResultado();
+
+$resta=new Resta(10,10,'Resta de valores:');
+$resta->operar();
+$resta->imprimirResultado();
+
+?>
+</body>
+</html> 

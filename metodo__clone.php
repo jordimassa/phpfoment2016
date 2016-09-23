@@ -1,16 +1,15 @@
 </head>
 <body>
-<?php
+<?php  
 class Persona {
   private $nombre;
-  private $edad;
-  static $edadambito;
-
+  static $edad;
+  
   public function fijarNombreEdad($nom,$ed)
   {
     $this->nombre=$nom;
-    $this->edad=$ed;
-    $this->edadambito=$ed;
+    self::$edad=$ed;
+    //echo  self::$edadambito;
   }
   public function retornarNombre()
   {
@@ -18,25 +17,36 @@ class Persona {
   }
   public function retornarEdad()
   {
-    return $this->edad;
+    return self::$edad;
   }
   public function __clone()
   { 
-    $this->edad=$this->edadambito;
-    $this->edad++;
-    $this->edadambito=$this->edad;
+    self::$edad++;
   }
 }
 
 $persona1=new Persona();
 $persona1->fijarNombreEdad('Juan',10);
 echo $persona1->retornarNombre().' - '.$persona1->retornarEdad().'<br>';
-$objeto_clonado=$persona1;
+/*$objeto_clonado=$persona1;
 for ($x=0;$x<9;$x++) {  
     $persona=clone($objeto_clonado);
     echo $persona->retornarNombre().' - '.$persona->retornarEdad().'<br>';
     $objeto_clonado=$persona;
-}
+}*/
+echo "<hr>";
+
+$persona=clone($persona1);
+echo $persona->retornarNombre().' - '.$persona->retornarEdad().'<br>';
+$persona=clone($persona1);
+echo $persona->retornarNombre().' - '.$persona->retornarEdad().'<br>';
+$persona=clone($persona1);
+echo $persona->retornarNombre().' - '.$persona->retornarEdad().'<br>';
+$persona=clone($persona1);
+echo $persona->retornarNombre().' - '.$persona->retornarEdad().'<br>';
+$persona=clone($persona1);
+echo $persona->retornarNombre().' - '.$persona->retornarEdad().'<br>';
 ?>
+  
 </body>
 </html>

@@ -1,11 +1,11 @@
 <?php
+require_once ("seleccionFutbol.php");
+
 class Entrenador extends seleccionFutbol {
 	private $idFederacion;
 
-	public function __contruct($id,$nom,$ape,$edad,$dor,$dem) {
-		parent::__contruct($id,$nom,$ape,$edad);
-		$this->dorsal=$dor;
-		$this->demarcacion=$dem;
+	public function __construct($id,$nom,$ape,$edad,$idFed) {
+		parent::__construct($id,$nom,$ape,$edad);
 		$this->idFederacion=$idFed;		
 	}
 
@@ -21,8 +21,10 @@ class Entrenador extends seleccionFutbol {
       echo ("Dirige en un Partido (Entrenador)<br>");
     }
 
-    public function printar() {
-    	echo $this->id." ".$this->nombre." ".$this->apellido;
+    public function imprimir() {
+    	echo "Soy un entrenador<br>";
+		echo parent::imprimir();
+    	echo "Id federacion: ".$this->idFederacion."<br>";
     }
 }
 ?>

@@ -1,10 +1,13 @@
 <?php
+require_once ("seleccionFutbol.php");
+
 class Futbolista extends seleccionFutbol {
 	private $dorsal;
 	private $demarcacion;
 
-	public function __contruct($id,$nom,$ape,$edad,$dor,$dem) {
-		parent::__contruct($id,$nom,$ape,$edad);
+
+	public function __construct($id,$nom,$ape,$edad,$dem,$dor) {
+		parent::__construct($id,$nom,$ape,$edad);
 		$this->dorsal=$dor;
 		$this->demarcacion=$dem;
 	}
@@ -14,15 +17,17 @@ class Futbolista extends seleccionFutbol {
 	}
 
 	public function entrenamiento() {
-		echo "Entrena (futbolista)<br>";
+		echo "Entrena (jugador)<br>";
 	}
 
 	public function partidoFutbol() {
-      	echo ("Juega un Partido (Futbolista)<br>");
+      echo ("Juega un Partido (Jugador)<br>");
+   }
+
+    public function imprimir() {
+    	parent::imprimir();
+    	echo $this->dorsal." ".$this->demarcacion."<br>";
     }
 
-    public function printar() {
-    	echo $this->id." ".$this->nombre." ".$this->apellido." ".$this->dorsal."<br>";
-    }
 }
 ?>

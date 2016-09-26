@@ -6,23 +6,20 @@
 </head>
 <body>
 <?php
-	require ("Entrenador.php");
-	require ("Futbolista.php");
-	require ("Masajista.php");
-	//require ("main.php");
+	require ("main.php");
+
+	$main = new	Main();
 
 	$delBosque = new Entrenador(1, "Vicente", "Del Bosque", 60, 28489);
-	$delBosque->imprimir();	
-	$delBosque->partidoFutbol();
+	$main->addIntegrante($delBosque);
 
 	$iniesta = new Futbolista(2, "Andrés", "Iniesta", 30, 8, "Centrocampista");
-	$iniesta->imprimir();
-	$iniesta->entrevista();
-	$iniesta->partidoFutbol();
+	$main->addIntegrante($iniesta);	
 
 	$raulMartinez = new Masajista(3, "Raúl", "Martinez", 41, "Licenciado en Fisioterapia", 18);
-	$raulMartinez->imprimir();	
-	$raulMartinez->partidoFutbol();
+	$main->addIntegrante($raulMartinez);
+
+	$main->concentracion();
 ?>
 </body>
 </html>

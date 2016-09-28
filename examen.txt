@@ -1,0 +1,7 @@
+- Clases/Metodos static
+- Abstract se han de implementar y han de estar en una clase abstracta
+- Clase abstract como final?
+- Metodos mágicos
+- Herencia simple interficies multiples si
+- Palabras clave protected, private, public
+- Operaciones de Ficheros

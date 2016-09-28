@@ -9,6 +9,11 @@ class Usuario extends DBAbstractModel {
  function __construct() {
  	$this->db_name = 'mydb';
  }
+
+ public function getRows() {
+ 	return $this->rows;
+ }
+
  public function get($user_email='') {
 	if (!empty($user_email)) :
 		 $this->query = "

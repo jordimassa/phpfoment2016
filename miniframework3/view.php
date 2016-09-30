@@ -8,7 +8,7 @@ function set_identificadores ($vista) {
 				$identificadores=array('propiedad');
 			break;
 			case 'vista_2':
-				$identificadores=array('propiedad_1', 'propiedad_2');
+				$identificadores=array('propiedad_1', 'propiedad_2', 'resta');
 				break;
 		}
 		return $identificadores;
@@ -31,7 +31,7 @@ function armar_diccionario ($vista,$data){
 function render_data($vista,$data) {
 	$html='';
 	if (($vista) && ($data)) {
-		print_r($data);
+		echo "AAA<br>";
 		$diccionario=armar_diccionario($vista,$data);
 		if($diccionario) {
 			$html=file_get_contents('html/'.$vista.'.html');

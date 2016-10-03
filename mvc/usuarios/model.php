@@ -85,13 +85,4 @@ class Usuario extends DBAbstractModel {
  }
 }
 
- $user= new Usuario();
- $recordset=$user->getAll();
-
-foreach ($recordset as $key => $value) {
-	foreach ($value as $key2 => $value2) {
-		echo $key2." ".$value2."<br>";
-	}
-}
-
 ?>

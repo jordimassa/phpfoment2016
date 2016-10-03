@@ -35,6 +35,7 @@ function render_dinamic_data($html, $data) {
 
 function retornar_vista($vista, $data=array()) {
 	global $diccionario;
+	//echo($diccionario['subtitle'][$vista]);
 	$html = get_template('template');
 	$html = str_replace('{subtitulo}', $diccionario['subtitle'][$vista], $html);
  	$html = str_replace('{formulario}', get_template($vista), $html);
@@ -42,16 +43,31 @@ function retornar_vista($vista, $data=array()) {
  	$html = render_dinamic_data($html, $diccionario['links_menu']);
  	$html = render_dinamic_data($html, $data);
 	// render {mensaje}
- 	if(array_key_exists('nombre', $data) && array_key_exists('apellido', $data) && $vista==VIEW_EDIT_USER) {
- 		$mensaje = 'Editar usuario '.$data['nombre'].' '.$data['apellido'];
- 	} else {
- 		if(array_key_exists('mensaje', $data)) {
- 			$mensaje = $data['mensaje'];
- 		} else {
- 			$mensaje = 'Datos del usuario:';
- 		}
- 	}
- 	$html = str_replace('{mensaje}', $mensaje, $html);
+	if ($vista=="listar") {
+		$mensaje="";
+		$x=0;
+	    foreach ($data as $key => $value) {
+	   		if ($x++>0) $mensaje.="<hr>";
+			foreach ($value as $key2 => $value2) {
+				$mensaje.=$key2." ".$value2."<br>";
+			}
+		}
+		$html = str_replace('{mensaje}', "Listado de usuarios", $html);
+	 	$html = str_replace('{tabla}', $mensaje, $html);
+	}
+	else
+	{
+	 	if(array_key_exists('nombre', $data) && array_key_exists('apellido', $data) && $vista==VIEW_EDIT_USER) {
+	 		$mensaje = 'Editar usuario '.$data['nombre'].' '.$data['apellido'];
+	 	} else {
+	 		if(array_key_exists('mensaje', $data)) {
+	 			$mensaje = $data['mensaje'];
+	 		} else {
+	 			$mensaje = 'Datos del usuario:';
+	 		}
+	 	}
+	 	$html = str_replace('{mensaje}', $mensaje, $html);
+	}
  	print $html;
 }
 ?>

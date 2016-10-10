@@ -101,11 +101,11 @@ select round(avg(art_precio),2) as media_precios from t_articulos where FAB_ID=2
 
 SELECT * FROM t_articulos ORDER BY art_precio desc, art_nombre;
 
-SELECT * FROM t_articulos where art_precio>=180 ORDER BY art_precio desc, art_nombre
+SELECT * FROM t_articulos where art_precio>=180 ORDER BY art_precio desc, art_nombre;
 
 select a.fab_id, COUNT(a.ART_ID),round(avg(a.art_precio),2) as media_precios,f.fab_nom from t_articulos a inner join t_fabricantes f on a.fab_id=f.fab_id GROUP BY FAB_ID;
 
-SELECT * FROM t_articulos where art_precio>=180 ORDER BY art_precio desc, art_nombre
+SELECT * FROM t_articulos where art_precio>=180 ORDER BY art_precio desc, art_nombre;
 
 select a.fab_id, COUNT(a.ART_ID),round(avg(a.art_precio),2) as media_precios,f.fab_nom from t_articulos a inner join t_fabricantes f on a.fab_id=f.fab_id GROUP BY FAB_ID;
 

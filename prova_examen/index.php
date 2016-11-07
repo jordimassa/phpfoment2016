@@ -36,6 +36,7 @@
 	  <th>Nom</th>
 	  <th>Cognoms</th>
 	  <th>Data Naix.</th>
+	  <th></th>
 	</tr>
 <?php
 $servername = "localhost";
@@ -62,14 +63,15 @@ try {
 	//echo $sqltxt;
 	
 
-	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		echo "<tr>";
-			echo "<td>".$row["USER_ID"]."</td>";				
-			echo "<td>".$row["USER_NOM"]."</td>";
-			echo "<td>".$row["USER_APELLIDOS"]."</td>";
-			echo "<td>".$row["USER_BORN_DATE"]."</td>";
-		echo "<tr>";		
-	}
+	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) :?>
+		<tr>
+			<td><?=$row["USER_ID"];?></td>				
+			<td><?=$row["USER_NOM"];?></td>
+			<td><?=$row["USER_APELLIDOS"];?></td>
+			<td><?=$row["USER_BORN_DATE"];?></td>
+			<td><a href='<?=$_SERVER["PHP_SELF"]."?id=".$row["USER_ID"];?>'>Borrar</a></td>			
+		<tr>		
+	<?php endwhile;
 
 }
 catch(PDOException $e)

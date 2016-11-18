@@ -1,0 +1,15 @@
+CREATE DATABASE db_empl
+
+use db_empl
+
+CREATE TABLE empleats (
+	ID INT NOT NULL AUTO_INCREMENT,
+    NOM VARCHAR(50) NOT NULL,
+    COGNOM VARCHAR(50) NOT NULL,
+    DATA_NAIXEMENT DATE NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+INSERT INTO empleats (NOM , COGNOM, DATA_NAIXEMENT) values ('Jordi','Massa','1965-10-15');
+INSERT INTO empleats (NOM , COGNOM, DATA_NAIXEMENT) values ('Carles','Roca','1975-08-08');
+INSERT INTO empleats (NOM , COGNOM, DATA_NAIXEMENT) values ('Enric','Vila','1960-06-04');

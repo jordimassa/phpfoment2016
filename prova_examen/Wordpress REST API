@@ -1,0 +1,93 @@
+Wordpress no tiene formalmente REST API
+
+Plugins a instalar en el Wordpress del amic
+
+- XMLRPC que està Deprecated
+
+o
+
+- WP REST API, pero no m´ha dona temps de investigar-la ja que hi ha que registrar endpoints, rutes i metods (GET, POST,etc) al fitxer wp-includes/rest-api.php)
+retornaría tots els posts amb GET /wp-json/wp/v2/posts. 
+amb POST per modificar un usari, per exemple /wp-json/wp/v2/users/4. 
+amb GET un altre vegada per fer una búsqueda pel term "awesome" /wp-json/wp/v2/posts?search=awesome. Etc.
+Retornaría JSON igual com la seguent
+
+o
+
+- json api V2
+
+Explico aquesta que es la mes senzilla:
+
+Segons l'exemple a la nostre página tindriem que fer aquesta crida jquery/ajax, postser en window.onload=nom_de_la_funcio;
+
+retorna un json una mica complicat, aixi que no entro en detalls de la iteració
+
+algunes formes de cridar-lo 
+
+Tots els Posts (limitat abaix per 'filter/post_per_page'):
+http://url.com/wp-json/posts
+
+Post concret:
+http://url.com/wp-json/posts/1631
+
+Per categories:
+http://url.com/wp-json/posts?filter[category]=web-development
+
+function nom_de_la_funcio() {
+	$.ajax({
+	    url: 'http://url.com/wp-json/posts',
+	    data: {
+	        filter: {
+	        'posts_per_page': 5
+	        }
+	    },
+	    dataType: 'json',
+	    type: 'GET',
+	    success: function(data) {
+	        // success code
+	        // escriure aqui el innerhtml del div on volem possar el contingut
+	        // abans tenim que recorrer el json amb 
+	        var arr=JSON.parse(data);
+	        //versio simple, si es un feed tindrem que fer bucles anidats fins arribar al item, si es semblant al xml tindriem que baixar un nivell per descartar channel
+	        for(i = 0; i < arr.length; i++) {
+	        	out += '<a href="' + arr[i].url + '">' + 
+	        	arr[i].display + '</a><br>';
+	    	}
+	    	document.getElementById("div_donde:escribir_feeds").innerHTML = out;
+	    },
+	    error: function() {
+	        // error code
+	    }
+	});
+}
+
+al estil clasic podria funcionar pero no he provat:
+
+function nom_de_la_funcio() {
+	<script>
+		var xmlhttp = new XMLHttpRequest();
+		var url = "http://url.com/wp-json/posts";
+
+		xmlhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        var myArr = JSON.parse(this.responseText);
+		        myFunction(myArr);
+		    }
+		};
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+
+        //versio simple, si es un feed tindrem que fer bucles anidats fins arribar al item, si es semblant al xml tindriem que baixar un nivell per descartar channel
+
+		function myFunction(arr) {
+		    var out = "";
+		    var i;
+		    for(i = 0; i < arr.length; i++) {
+		        out += '<a href="' + arr[i].url + '">' + 
+		        arr[i].display + '</a><br>';
+		    }
+		    document.getElementById("div_donde:escribir_feeds").innerHTML = out;
+		}
+	</script>
+}
+
